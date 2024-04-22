@@ -9,6 +9,7 @@ export default function Navbar() {
                 <Link href="/" className="hover:text-[#ce2e54] duration-200">Home</Link>
                 <Link href="/public-gallery" className="hover:text-[#ce2e54] duration-200">Public Gallery</Link>
                 <Link href="/private-gallery" className="hover:text-[#ce2e54] duration-200">Private Gallery</Link>
+                <Link href="/admin-data" className="hover:text-[#ce2e54] duration-200">Admin Data</Link>
             </div>
             <div className="flex justify-left gap-4">
                 <Link href="/sign-in-or-up" className="hover:text-[#ce2e54] duration-200">Sign In/Sign Up</Link>

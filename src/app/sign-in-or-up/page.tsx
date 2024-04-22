@@ -2,27 +2,35 @@
 
 import { useState } from "react";
 
-export default function SignIn() {
+export default function SignInOrUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [status, setStatus] = useState("not logged in");
 
     async function formSubmit() {
-        fetch("/api/add-user", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-            }),
-        });
+        try {
+            const response = await fetch("/api/add-user", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            });
+            const data = await response.json();
+            setStatus(data.returnMsg);
+        } catch(e) {
+            console.log(e);
+        }
     }
 
     return (
         <div className="flex justify-center">
             <div className="mt-10">
                 <p className="text-xl text-center">Sign In/Sign Up Page</p>
+                <p className="text-sm text-center">status: {status}</p>
                 <p className="mt-4">Email</p>
                 <input
                     placeholder="artvault@email.com"
