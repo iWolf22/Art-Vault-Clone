@@ -3,7 +3,6 @@ import hashing from "@/scripts/hashing";
 
 export async function POST(request: Request) {
     const data = await request.json();
-    console.log(data);
 
     const prisma = new PrismaClient();
     var returnMsg = "null";

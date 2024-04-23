@@ -8,7 +8,6 @@ export default function Navbar() {
                 <img src="https://art-vault.vercel.app/images/ArtVault.svg" className="w-6"></img>
                 <Link href="/" className="hover:text-[#ce2e54] duration-200">Home</Link>
                 <Link href="/public-gallery" className="hover:text-[#ce2e54] duration-200">Public Gallery</Link>
-                <Link href="/private-gallery" className="hover:text-[#ce2e54] duration-200">Private Gallery</Link>
                 <Link href="/image-upload" className="hover:text-[#ce2e54] duration-200">Image Upload</Link>
                 <Link href="/admin-data" className="hover:text-[#ce2e54] duration-200">Admin Data</Link>
             </div>

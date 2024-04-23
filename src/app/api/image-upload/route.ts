@@ -16,49 +16,48 @@ export async function POST(request: NextRequest) {
     const file = request.body || '';
     const contentType = request.headers.get("content-type") || "text/plain";
     const filename = `${title}-${nanoid()}.${contentType.split('/')[1]}`;
+    var returnMsg = "unsupported action";
 
     const cookieStore = cookies();
     const email = cookieStore.get('ArtVaultCookie');
-    console.log(email);
 
+    if (email === undefined) {
+        returnMsg = "must be logged in";
+    } else {
+        try {
 
+            returnMsg = "successful image upload";
 
-    try {
-        const blob = await put(filename, file, {
-            contentType,
-            access: "public",
-        });
+            const blob = await put(filename, file, {
+                contentType,
+                access: "public",
+            });
 
-        console.log(blob);
+            const prisma = new PrismaClient();
 
-        const prisma = new PrismaClient();
+            await prisma.user.update({
+                where: { email: email?.value },
+                data: {
+                    pictures: {
+                        create: [
+                        {
+                            title: title?.replaceAll("_", " ") as string,
+                            description: description?.replaceAll("_", " ") as string,
+                            imageURL: blob.url,
+                            downloadURL: blob.downloadUrl,
+                            public: "false",
+                        }
+                    ]}
+                },
+            });
 
-        const userFetch = await prisma.user.findUnique({
-            where: { email: email?.value },
-        });
+            await prisma.$disconnect();
 
-        console.log(userFetch);
-
-        await prisma.user.update({
-            where: { email: email?.value },
-            data: {
-                pictures: {
-                    create: [
-                    {
-                        title: title?.replaceAll("_", " ") as string,
-                        description: description?.replaceAll("_", " ") as string,
-                        imageURL: blob.url,
-                        downloadURL: blob.downloadUrl,
-                    }
-                ]}
-            },
-        });
-
-        await prisma.$disconnect();
-
-    } catch (e) {
-        console.log(e);
+        } catch (e) {
+            returnMsg = "server side error";
+            console.log(e);
+        }
     }
 
-    return NextResponse.json({blob: "blob"});
+    return NextResponse.json({returnMsg: returnMsg});
 }

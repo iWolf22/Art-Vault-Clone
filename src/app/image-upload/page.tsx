@@ -9,6 +9,7 @@ export default function PrivateGallery() {
     );
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [status, setStatus] = useState("waiting for image upload");
 
     function onChangePicture(e: ChangeEvent<HTMLInputElement>) {
         setFile(e.currentTarget.files && e.currentTarget.files[0]);
@@ -22,20 +23,22 @@ export default function PrivateGallery() {
 
     async function onSubmit() {
         if (file) {
-            console.log(file);
-            await fetch("/api/image-upload?title=" + title.replaceAll(" ", "_") + "&description=" + description.replaceAll(" ", "_"), {
+            const result = await fetch("/api/image-upload?title=" + title.replaceAll(" ", "_") + "&description=" + description.replaceAll(" ", "_"), {
                 method: "POST",
                 headers: {
                     "content-type": file?.type || "application/octet-stream",
                 },
                 body: file,
             });
+            const data = await result.json();
+            setStatus(data.returnMsg);
         }
     }
 
     return (
         <div>
             <p className="text-xl text-center mt-16">Image Upload</p>
+            <p className="text-center">status: {status}</p>
             <p className="mt-4">Artwork Title</p>
             <input
                 placeholder="Given an artwork title"
