@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
     const prisma = new PrismaClient();
     var status = 501;

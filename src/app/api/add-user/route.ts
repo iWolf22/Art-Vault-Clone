@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import hashing from "@/scripts/hashing";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
     const data = await request.json();
 
