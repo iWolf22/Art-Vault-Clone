@@ -19,6 +19,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
+                <link rel="icon" href="https://art-vault.vercel.app/images/ArtVault.svg" sizes="any" />
                 <Container>
                     <div className="flex flex-col h-screen justify-between">
                         <div>
