@@ -22,7 +22,8 @@ export default function PrivateGallery() {
 
     async function onSubmit() {
         if (file) {
-            await fetch("/api/image-upload", {
+            console.log(file);
+            await fetch("/api/image-upload?title=" + title.replaceAll(" ", "_") + "&description=" + description.replaceAll(" ", "_"), {
                 method: "POST",
                 headers: {
                     "content-type": file?.type || "application/octet-stream",
@@ -46,8 +47,8 @@ export default function PrivateGallery() {
             <input
                 placeholder="Give an artwork description"
                 className="bg-[#dddddd] p-1.5 rounded-lg w-96 mb-4"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
             ></input>
             <img src={previewURL}></img>
             <button

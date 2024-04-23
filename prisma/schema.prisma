@@ -32,4 +32,5 @@ model Picture {
     title       String
     description String
     imageURL    String
+    downloadURL String
 }
