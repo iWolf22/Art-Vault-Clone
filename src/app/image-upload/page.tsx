@@ -53,7 +53,7 @@ export default function PrivateGallery() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             ></input>
-            <img src={previewURL}></img>
+            <img src={previewURL} alt="anti warn"></img>
             <button
                 className="mt-6 p-1.5 rounded-lg bg-[#dddddd] hover:text-[#ce2e54] duration-200 mr-4"
                 onClick={onSubmit}

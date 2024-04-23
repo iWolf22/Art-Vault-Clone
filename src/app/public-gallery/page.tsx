@@ -71,7 +71,7 @@ export default function PublicGallery() {
                             <p className="text-lg text-center font-bold">{picture.title}</p>
                             <p className="text-xs text-center italic">{JSON.stringify(picture.createdAt)}</p>
                             <p>{picture.description}</p>
-                            <img src={picture.imageURL}></img>
+                            <img src={picture.imageURL} alt="anti warn"></img>
                             <p>Uploaded by: {adminData[j].email}</p>
                         </div>
                     );
