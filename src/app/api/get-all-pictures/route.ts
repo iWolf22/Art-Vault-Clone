@@ -25,6 +25,8 @@ export async function GET() {
 
     await prisma.$disconnect();
 
+    console.log(fetchData);
+
     return new Response(
         JSON.stringify({
             "adminData": fetchData,

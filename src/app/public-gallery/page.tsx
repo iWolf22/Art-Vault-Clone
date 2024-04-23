@@ -34,6 +34,7 @@ export default function PublicGallery() {
                 method: "GET"
             });
             var data = await response.json();
+            console.log(data.adminData);
             setAdminData(data.adminData);
 
             response = await fetch("/api/get-all-pictures", {
