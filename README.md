@@ -4,7 +4,9 @@ Art vault clone, allows users to upload pictures to a publicly curated art galle
 
 ## Preview of the App
 
-Visit the Vercel hosted app here: https://art-vault-clone.vercel.app/
+https://github.com/iWolf22/Art-Vault-Clone/assets/74108689/1cb1b305-abd6-422d-abd6-8b875f9999f3
+
+Visit the Vercel-hosted app here: https://art-vault-clone.vercel.app/
 
 ## Technologies Used
 
